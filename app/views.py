@@ -19,6 +19,14 @@ def home():
     """Render website's home page."""
     return render_template('home.html')
 
+@app.route('/contact')
+def contact():
+	error=None 
+	if request.method=='POST':
+		sendemail('davyanhoneyghan@gmail.com',request.form['name'],request.form['email'],request.form['message'],request.form['subject'])
+	elif request.form['name']=="":
+		error='error'
+	return render_template('contact.html')
 
 @app.route('/about/')
 def about():
